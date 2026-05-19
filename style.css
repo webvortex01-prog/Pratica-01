@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=New+Rocker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap');
+
+:root {
+    --fonte-principal: 'Roboto Slab', serif;
+    --fonte-secundaria: 'New Rocker', cursive;
+    --fonte-terciaria: 'Faculty Glyphic', sans-serif;
+}
+
+
+
+/* RESET: Limpa as margens padrão de todos os navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
+}
+
+h3 {
+    font-family: var(--fonte-terciaria);
+}
+
+/* Deixa a rolagem suave quando clica nos links do menu */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #0d1117; /* Cinza bem escuro de fundo */
+    color: #c9d1d9; /* Letras em tom cinza claro para não cansar a vista */
+}
+
+#inicio p {
+    font-family: var(--fonte-secundaria);
+    font-size: 2.5rem;
+}
+
+
+/* --- ESTILO DO MENU --- */
+.menu-topo {
+    position: fixed; /* Fixa o menu no topo da tela */
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Joga a logo pra esquerda e os links pra direita */
+    align-items: center;
+    padding: 20px 50px;
+    background-color: rgba(13, 17, 23, 0.95); /* Fundo do menu semi-transparente */
+    border-bottom: 1px solid #21262d; /* Linha fininha embaixo do menu */
+    z-index: 1000; /* Garante que o menu fique sempre por cima do resto do site */
+}
+
+.menu-logo {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #58a6ff; /* Azul da logo */
+}
+
+.menu-links ul {
+    display: flex; /* Coloca os links um do lado do outro */
+    list-style: none; /* Tira as bolinhas da lista */
+}
+
+.menu-links ul li {
+    margin-left: 25px; /* Espaço entre os links */
+}
+
+.menu-links ul li a {
+    color: #8b949e;
+    text-decoration: none; /* Tira o sublinhado dos links */
+    transition: color 0.3s; /* Efeito suave ao passar o mouse */
+}
+
+.menu-links ul li a:hover {
+    color: #58a6ff; /* Muda para azul quando passa o mouse */
+}
+
+/* --- ESTRUTURA DAS SEÇÕES --- */
+.secao-tela-cheia {
+    min-height: 100vh; /* Força a seção a ter no mínimo o tamanho da tela inteira */
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo na horizontal */
+    align-items: center; /* Centraliza o conteúdo na vertical */
+    text-align: center;
+    padding: 100px 20px;
+    height: 200px;
+}
+
+.fundo-escuro-alternativo {
+    background-color: #161b22; /* Um tom de cinza um pouco mais claro para diferenciar as seções */
+}
+
+.container-central {
+    max-width: 950px;
+    width: 100%;
+}
+
+/* --- CONTEÚDO DA PRIMEIRA TELA (INÍCIO) --- */
+.conteudo-introducao h1 {
+    font-size: 3.5rem;
+    color: #f0f6fc;
+    margin-bottom: 15px;
+}
+
+.conteudo-introducao p {
+    font-size: 1.4rem;
+    color: #8b949e;
+    font-style: italic;
+    margin-bottom: 35px;
+}
+
+.botao-entrar {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: #238636; /* Verde estilo o botão de commit do GitHub */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.botao-entrar:hover {
+    background-color: #2ea44f; /* Verde mais claro no hover */
+    transform: translateY(-2px); /* Sobe de leve o botão para dar efeito de clique */
+}
+
+/* --- TEXTO DA SEGUNDA TELA (MANIFESTO) --- */
+.container-central h2 {
+    font-size: 2.5rem;
+    color: #f0f6fc;
+    margin-bottom: 25px;
+}
+
+.texto-motivacional {
+    font-size: 1.25rem;
+    line-height: 1.8; /* Dá um espaço legal entre as linhas do texto */
+    color: #8b949e;
+    max-width: 800px;
+    margin: 0 auto; /* Centraliza o bloco de texto na tela */
+}
+
+/* --- GRID DE CARTÕES (PILARES) --- */
+.caixa-dos-cards {
+    display: flex;
+    gap: 24px; /* Espaçamento entre os cartões */
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap; /* Se a tela for pequena, joga os cartões para baixo automaticamente */
+}
+
+.cartao-estudo {
+    background-color: #161b22;
+    padding: 30px;
+    border-radius: 8px;
+    width: 280px;
+    text-align: left;
+    border: 1px solid #30363d;
+    border-top: 4px solid #58a6ff; /* Barrinha azul estilosa no topo do cartão */
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.cartao-estudo:hover {
+    transform: translateY(-5px); /* Efeito de flutuar ao passar o mouse */
+    border-color: #58a6ff; /* Borda acende em azul */
+}
+
+.cartao-estudo h3 {
+    color: #f0f6fc;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.cartao-estudo p {
+    color: #8b949e;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+
+.h2-card {
+    font-size: 2.5rem;
+    color: #f0f6fc;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+
+
+#card-ferramentas {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+#card-ferramentas img {
+    width: 150px;
+    height: 150px;
+}
+
+#card-ferramentas div {
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.div-ferra {
+    display: flex;
+    align-items: center; /* Alinha a imagem e o texto no meio, na altura */
+    gap: 40px;          /* Dá um espaço maneiro entre a imagem e o texto */
+    margin-bottom: 60px; /* Dá um espaço grande entre uma tecnologia e a outra */
+    flex-wrap: wrap;    /* Se a tela for pequena, joga o texto pra baixo da foto */
+    flex-direction: column;
+    background-color: #21262d;
+    padding: 30px;
+    border-radius: 8px;
+    width: 280px;
+    text-align: center;
+    border: 1px solid #30363d;
+    border-top: 4px solid #58a6ff; /* Barrinha azul estilosa no topo do cartão */
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.div-ferra:hover {
+    transform: translateY(-5px); /* Efeito de flutuar ao passar o mouse */
+    border-color: #58a6ff; /* Borda acende em azul */
+}
+
+
+.btn {
+    width: 300px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0064d6;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    background-color: #3b82f6;
+    transform: translateY(-4px);
+    transition: 0.7s;
+}
+
+/* Configura as linhas da nova seção */
+.linha-exemplo {
+    background-color: #21262d;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+    border-top: 4px solid #58a6ff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 250px;
+}
+
+.importancias h1 {
+    margin: 50px;
+    font-size: 2.5rem;
+    text-align: center;
+    font-family: var(--fonte-secundaria);
+}
+
+.importancias p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 10px;
+    background-color: #21262d;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+    border-top: 4px solid #005ac2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 100px;
+
+}
+
+.importancias p:hover {
+    transform: translateY(-5px) rotate(0.2deg); /* Efeito de flutuar ao passar o mouse */
+    border-color: #58a6ff; /* Borda acende em azul */
+    transition: 0.7s;
+}
+
+
+/* Tamanho do texto */
+.linha-exemplo h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    align-items: center;
+    font-family: var(--fonte-secundaria);
+}
+
+/* Tamanho das imagens */
+.logo-site {
+    width: 150px;
+    height: auto;
+}
+
+.logo-site:hover {
+    transform: translateY(-4px) rotate(3deg);
+    transition: 0.7s ;
+}
+
+/* Espaço do texto */
+.card-exem {
+    display: flex;             /* 1. ATIVA O FLEXBOX AQUI */
+    flex-direction: column;    /* 2. DIZ QUE O CONTEÚDO VAI EM PÉ (COLUNA) */
+    align-items: flex-start;   /* 3. POR PADRÃO, BOTÕES NA ESQUERDA */
+}
+
+/* Regra mágica que faz o bloco da Apple inverter de lado */
+.linha-exemplo:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.linha-exemplo:nth-child(odd) .botao-entrar {
+    align-self: flex-end;
+}
+
+.linha-exemplo:hover {
+    transform: translateY(-4px);
+    transition: 0.7s ;
+    border-color: #012855;
+}
+
+
+/* Estilo do botão */
+.botao-entrar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #58a6ff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.7s ease;
+    margin: 10px;
+}
+
+.botao-entrar:hover {
+    background-color: #3b82f6;
+    transition: 0.7s;
+    transform: translateY(-4px);
+}
