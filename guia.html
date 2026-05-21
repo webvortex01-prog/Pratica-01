@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enciclopédia Suprema HTML5 • 30 Labs Lado a Lado</title>
+    <style>
+        /* ======================================================== */
+        /* RESET E CONFIGURAÇÕES BASE (THEMA CYBERDARK)             */
+        /* ======================================================== */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        
+        :root {
+            --bg-body: #070709;
+            --bg-card: #0f0f12;
+            --bg-code: #16161d;
+            --border: #222227;
+            --text-sub: #9494a1;
+            --neon-pink: #ff007f;
+            --neon-cyan: #00f0ff;
+            --neon-green: #39ff14;
+            --neon-purple: #9d4edd;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-body); color: #f4f4f5; display: flex; min-height: 100vh; }
+
+        /* ======================================================== */
+        /* SIDEBAR E NAVEGAÇÃO LATERAL                              */
+        /* ======================================================== */
+        aside {
+            width: 280px; background-color: var(--bg-card); border-right: 1px solid var(--border);
+            padding: 30px 20px; position: fixed; height: 100vh; display: flex; flex-direction: column; gap: 25px;
+            z-index: 1000; overflow-y: auto;
+        }
+        .logo-area h2 { font-size: 16px; letter-spacing: 2px; color: #fff; text-align: center; }
+        .logo-area span { color: var(--neon-pink); }
+        
+        .menu-links { display: flex; flex-direction: column; gap: 8px; }
+        .menu-links a { 
+            color: var(--text-sub); text-decoration: none; font-size: 13px; padding: 10px; 
+            border-radius: 6px; transition: 0.2s; border-left: 3px solid transparent;
+        }
+        .menu-links a:hover { background-color: var(--bg-code); color: #fff; padding-left: 15px; }
+        .menu-links a { border-left-color: var(--neon-pink); }
+
+        main { margin-left: 280px; flex: 1; padding: 40px; max-width: 1200px; width: 100%; }
+        
+        .topo-header { margin-bottom: 40px; padding-bottom: 25px; border-bottom: 1px solid var(--border); }
+        .topo-header h1 { font-size: 32px; margin-bottom: 10px; background: linear-gradient(90deg, #fff, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        section { margin-bottom: 50px; }
+        section h2 { font-size: 22px; margin-bottom: 20px; color: var(--neon-cyan); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+        /* ======================================================== */
+        /* LABS LADO A LADO (CÓDIGO FONTE VS COMPONENTE VIVO)       */
+        /* ======================================================== */
+        .lab-container { display: flex; flex-direction: column; gap: 25px; }
+        .lab-box { background-color: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+        .lab-titulo { background-color: #131317; padding: 12px 20px; font-size: 13px; font-weight: bold; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+        .lab-titulo span.tag-badge { color: var(--neon-green); font-family: monospace; font-size: 14px; }
+        
+        .lab-split { display: grid; grid-template-columns: 1fr 1fr; }
+        @media (max-width: 950px) { .lab-split { grid-template-columns: 1fr; } }
+
+        .lab-codigo { background-color: var(--bg-code); padding: 18px; border-right: 1px solid var(--border); overflow-x: auto; display: flex; align-items: center; }
+        .lab-codigo pre { font-family: 'Courier New', Courier, monospace; color: #a6e22e; font-size: 12px; white-space: pre-wrap; line-height: 1.4; width: 100%; }
+        .lab-codigo span.attr { color: #f92672; } 
+        .lab-codigo span.val { color: #e6db74; }
+        .lab-codigo span.tag { color: #66d9ef; }
+
+        .lab-render { padding: 22px; display: flex; flex-direction: column; justify-content: center; background-color: #0a0a0d; gap: 10px; }
+
+        /* Estilos genéricos para os elementos internos do render */
+        .render-reset-nav a { color: #fff; margin-right: 15px; text-decoration: none; font-size: 13px; }
+        .render-reset-nav a:hover { color: var(--neon-pink); }
+        .input-demo { background: #000; border: 1px solid #333; padding: 8px; border-radius: 4px; color: #fff; font-size: 12px; width: 100%; }
+        .input-demo:focus { border-color: var(--neon-cyan); outline: none; }
+        .btn-demo { background: var(--neon-pink); color: #fff; border: none; padding: 8px 14px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            aside { width: 100%; height: auto; position: relative; border-right: none; }
+            main { margin-left: 0; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="logo-area">
+            <h2>DICIONARIO_<span>HTML</span></h2>
+        </div>
+        <nav class="menu-links">
+            <a href="#sec-estruturais">01 a 10: Estruturais</a>
+            <a href="#sec-conteudo">11 a 20: Conteúdo e Texto</a>
+            <a href="#sec-forms">21 a 30: Formulários e Mídias</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header class="topo-header">
+            <h1>ENCICLOPÉDIA DE TAGS HTML5</h1>
+            <p>30 Laboratórios Individuais: Código semântico puro à esquerda e renderização ativa à direita.</p>
+        </header>
+
+        <section id="sec-estruturais">
+            <h2>01 a 10: Elementos Estruturais (Layout Semântico)</h2>
+            <div class="lab-container">
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Cabeçalho da página ou seção</span><span class="tag-badge">&lt;header&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">header</span> style="<span class="attr">background</span>:<span class="val">#111</span>; <span class="attr">padding</span>:<span class="val">10px</span>; <span class="attr">border</span>:<span class="val">1px solid #222</span>"&gt;<br>  &lt;<span class="tag">h3</span>&gt;Meu Logo&lt;/<span class="tag">h3</span>&gt;<br>&lt;/<span class="tag">header</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <header style="background:#111; padding:10px; border:1px solid #222; border-radius:4px; width:100%;">
+                                <h3 style="font-size:14px; color:#fff;">Meu Logo Studio</h3>
+                            </header>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Bloco de links de navegação</span><span class="tag-badge">&lt;nav&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">nav</span> class="<span class="attr">render-reset-nav</span>"&gt;<br>  &lt;<span class="tag">a</span> href="<span class="val">#</span>"&gt;Início&lt;/<span class="tag">a</span>&gt;<br>  &lt;<span class="tag">a</span> href="<span class="val">#</span>"&gt;Projetos&lt;/<span class="tag">a</span>&gt;<br>&lt;/<span class="tag">nav</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <nav class="render-reset-nav">
+                                <a href="#">Início</a>
+                                <a href="#">Projetos</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Conteúdo principal e central do site (Uso Único)</span><span class="tag-badge">&lt;main&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">main</span> style="<span class="attr">background</span>:<span class="val">#131317</span>; <span class="attr">padding</span>:<span class="val">12px</span>"&gt;<br>  &lt;<span class="tag">p</span>&gt;Este é o corpo principal exclusivo da página.&lt;/<span class="tag">p</span>&gt;<br>&lt;/<span class="tag">main</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <main style="background:#131317; padding:12px; border:1px solid #222; border-radius:4px; width:100%;">
+                                <p style="font-size:13px; color:var(--text-sub);">Este é o corpo principal exclusivo da página.</p>
+                            </main>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Seção temática de um documento</span><span class="tag-badge">&lt;section&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">section</span> style="<span class="attr">padding</span>:<span class="val">10px</span>; <span class="attr">background</span>:<span class="val">#0e0e12</span>"&gt;<br>  &lt;<span class="tag">h4</span>&gt;Módulo de Estudos&lt;/<span class="tag">h4</span>&gt;<br>&lt;/<span class="tag">section</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <section style="padding:10px; background:#0e0e12; border-left:3px solid var(--neon-cyan); width:100%;">
+                                <h4 style="font-size:13px; color:#fff;">Módulo de Estudos</h4>
+                                <p style="font-size:12px; color:var(--text-sub);">Agrupa conteúdos de um mesmo assunto.</p>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Conteúdo auto-contido e independente</span><span class="tag-badge">&lt;article&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">article</span> style="<span class="attr">background</span>:<span class="val">#1c1b22</span>; <span class="attr">padding</span>:<span class="val">10px</span>"&gt;<br>  &lt;<span class="tag">h5</span>&gt;Post do Blog&lt;/<span class="tag">h5</span>&gt;<br>&lt;/<span class="tag">article</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <article style="background:#1c1b22; padding:10px; border-radius:4px; border:1px solid #333; width:100%;">
+                                <h5 style="font-size:13px; color:#fff; margin-bottom:4px;">Post do Blog</h5>
+                                <p style="font-size:12px; color:var(--text-sub);">Faz sentido completo isolado (ex: notícia, card).</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Conteúdo correlato ou barra lateral (Sidebar)</span><span class="tag-badge">&lt;aside&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">aside</span> style="<span class="attr">background</span>:<span class="val">#111</span>; <span class="attr">color</span>:<span class="val">#888</span>; <span class="attr">font-size</span>:<span class="val">12px</span>"&gt;<br>  Anúncios ou Links Laterais<br>&lt;/<span class="tag">aside</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <aside style="background:#111; color:var(--text-sub); padding:10px; font-size:12px; border-radius:4px; position:static; width:100%; height:auto; display:block;">
+                                Barra Lateral: Links extras ou widgets secundários.
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Rodapé da página ou seção</span><span class="tag-badge">&lt;footer&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">footer</span> style="<span class="attr">text-align</span>:<span class="val">center</span>; <span class="attr">font-size</span>:<span class="val">12px</span>"&gt;<br>  © 2026 Dev Note<br>&lt;/<span class="tag">footer</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <footer style="text-align:center; font-size:12px; color:#666; width:100%; background:#000; padding:8px;">
+                                © 2026 Dev Note • Rodapé Semântico
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Container genérico de bloco (Sem valor semântico)</span><span class="tag-badge">&lt;div&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">div</span> style="<span class="attr">background</span>:<span class="val">var(--neon-purple)</span>; <span class="attr">padding</span>:<span class="val">8px</span>"&gt;<br>  Bloco Div<br>&lt;/<span class="tag">div</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <div style="background:rgba(157, 78, 221, 0.2); border:1px solid var(--neon-purple); padding:8px; border-radius:4px; font-size:12px; text-align:center; width:100%;">
+                                Apenas uma caixa de divisão (CSS/Organização)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Container genérico em linha (Inline)</span><span class="tag-badge">&lt;span&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>Texto comum &lt;<span class="tag">span</span> style="<span class="attr">color</span>:<span class="val">cyan</span>"&gt;Destaque&lt;/<span class="tag">span</span>&gt; aqui.</pre></div>
+                        <div class="lab-render">
+                            <p style="font-size:13px; color:var(--text-sub);">
+                                Modificando uma palavra <span style="color:var(--neon-cyan); font-weight:bold; text-decoration:underline;">específica</span> no meio do texto.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Hierarquia Semântica Combinada</span><span class="tag-badge">Seção + Article</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">section</span>&gt;<br>  &lt;<span class="tag">article</span> style="<span class="attr">background</span>:<span class="val">#111</span>"&gt;Item 1&lt;/<span class="tag">article</span>&gt;<br>&lt;/<span class="tag">section</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <section style="background:#111; padding:8px; border-radius:4px; width:100%;">
+                                <article style="background:#1c1b22; padding:6px; font-size:11px; border:1px solid #333;">
+                                    Artigo contido dentro de uma Section maior.
+                                </article>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="sec-conteudo">
+            <h2>11 a 20: Tags de Elementos de Conteúdo e Texto</h2>
+            <div class="lab-container">
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Cabeçalhos hierárquicos (Títulos)</span><span class="tag-badge">&lt;h1&gt; até &lt;h6&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">h1</span> style="<span class="attr">font-size</span>:<span class="val">18px</span>"&gt;Título 1&lt;/<span class="tag">h1</span>&gt;<br>&lt;<span class="tag">h3</span> style="<span class="attr">font-size</span>:<span class="val">14px</span>"&gt;Título 3&lt;/<span class="tag">h3</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <h1 style="font-size:18px; color:#fff;">H1: Título Principal</h1>
+                            <h3 style="font-size:14px; color:var(--neon-pink);">H3: Subtítulo do Assunto</h3>
+                            <h6 style="font-size:11px; color:#555;">H6: Título de menor relevância</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Bloco de parágrafo de texto padrão</span><span class="tag-badge">&lt;p&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">p</span> style="<span class="attr">color</span>:<span class="val">#aaa</span>; <span class="attr">line-height</span>:<span class="val">1.4</span>"&gt;<br>  Texto corrido de exemplo.<br>&lt;/<span class="tag">p</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <p style="color:#aaa; font-size:13px; line-height:1.4; width:100%;">
+                                O elemento parágrafo distribui o texto em blocos horizontais automáticos com espaçamento inferior padrão.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Hiperlink com atributo de destino</span><span class="tag-badge">&lt;a&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">a</span> href="<span class="val">https://google.com</span>" target="<span class="val">_blank</span>" style="<span class="attr">color</span>:<span class="val">cyan</span>"&gt;<br>  Visitar Link Externo<br>&lt;/<span class="tag">a</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <a href="https://google.com" target="_blank" style="color:var(--neon-cyan); font-size:13px; font-weight:bold;">Visitar Link Externo (Nova Aba) →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Destaque de importância séria ou crítica (Negrito)</span><span class="tag-badge">&lt;strong&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>Atenção: Código &lt;<span class="tag">strong</span>&gt;obrigatório&lt;/<span class="tag">strong</span>&gt;.</pre></div>
+                        <div class="lab-render">
+                            <p style="font-size:12px; color:var(--text-sub);">
+                                Atenção: Salvar os arquivos antes do build é <strong style="color:#fff; font-size:13px;">totalmente obrigatório</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Ênfase idiomática ou textual (Itálico)</span><span class="tag-badge">&lt;em&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>Isso é um termo &lt;<span class="tag">em</span>&gt;estrangeiro&lt;/<span class="tag">em</span>&gt;.</pre></div>
+                        <div class="lab-render">
+                            <p style="font-size:13px; color:var(--text-sub);">
+                                O desenvolvedor utiliza o conceito de <em style="color:#fff;">Design Responsive</em> em suas folhas CSS.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Quebra de linha física no texto</span><span class="tag-badge">&lt;br&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>Texto Antes.&lt;<span class="tag">br</span>&gt;Texto Depois.</pre></div>
+                        <div class="lab-render">
+                            <p style="font-size:12px; color:var(--text-sub);">
+                                Endereço: Rua da Automação, Nº 404<br>Bairro: Codespaces Terminal
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Lista desordenada (Marcadores de Ponto)</span><span class="tag-badge">&lt;ul&gt; + &lt;li&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">ul</span>&gt;<br>  &lt;<span class="tag">li</span>&gt;HTML Semântico&lt;/<span class="tag">li</span>&gt;<br>  &lt;<span class="tag">li</span>&gt;CSS Grid&lt;/<span class="tag">li</span>&gt;<br>&lt;/<span class="tag">ul</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <ul style="padding-left:20px; font-size:12px; color:#fff;">
+                                <li>HTML Semântico</li>
+                                <li>CSS Grid</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Lista ordenada sequencial (Numérica)</span><span class="tag-badge">&lt;ol&gt; + &lt;li&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">ol</span>&gt;<br>  &lt;<span class="tag">li</span>&gt;Passo Um&lt;/<span class="tag">li</span>&gt;<br>  &lt;<span class="tag">li</span>&gt;Passo Dois&lt;/<span class="tag">li</span>&gt;<br>&lt;/<span class="tag">ol</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <ol style="padding-left:20px; font-size:12px; color:#fff;">
+                                <li>Estruturar tags básicas</li>
+                                <li>Aplicar regras de cores do CSS</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Bloco ou trecho de código fonte de computador</span><span class="tag-badge">&lt;code&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>Configurado via &lt;<span class="tag">code</span> style="<span class="attr">background</span>:<span class="val">#222</span>"&gt;display: flex&lt;/<span class="tag">code</span>&gt;.</pre></div>
+                        <div class="lab-render">
+                            <p style="font-size:12px; color:var(--text-sub);">
+                                Alinhe os itens adicionando a regra <code style="background:#1e1e24; color:var(--neon-green); padding:2px 5px; border-radius:3px; font-family:monospace;">justify-content: center</code>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Seção citada de outra fonte externa</span><span class="tag-badge">&lt;blockquote&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">blockquote</span> style="<span class="attr">border-left</span>:<span class="val">3px solid pink</span>; <span class="attr">padding</span>:<span class="val">6px</span>"&gt;<br>  "Citação de texto estendido."<br>&lt;/<span class="tag">blockquote</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <blockquote style="border-left:3px solid var(--neon-pink); background:#111; padding:8px; font-style:italic; font-size:12px; color:#fff; width:100%;">
+                                "Consertar erros de código no chassi do navegador expande a senioridade do programador."
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="sec-forms">
+            <h2>21 a 30: Formulários, Tabelas, Mídias e Elementos Interativos</h2>
+            <div class="lab-container">
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Seção de documento para coletar dados (Formulário)</span><span class="tag-badge">&lt;form&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">form</span> style="<span class="attr">background</span>:<span class="val">#111</span>; <span class="attr">padding</span>:<span class="val">10px</span>"&gt;<br>  (Elementos internos vão aqui dentro)<br>&lt;/<span class="tag">form</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <form style="background:#111; padding:10px; border:1px solid #222; border-radius:4px; width:100%;" onsubmit="event.preventDefault();">
+                                <span style="font-size:11px; color:#666;">[Escopo do Form Ativo]</span>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Legenda descritiva para um campo de input</span><span class="tag-badge">&lt;label&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">label</span> style="<span class="attr">font-size</span>:<span class="val">12px</span>; <span class="attr">color</span>:<span class="val">#fff</span>"&gt;Nome Dev:&lt;/<span class="tag">label</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <label style="font-size:12px; color:#fff; font-weight:bold; display:block; margin-bottom:2px;">Nome Dev:</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Campo básico de entrada de texto comum</span><span class="tag-badge">&lt;input type="text"&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">input</span> type="<span class="val">text</span>" class="<span class="attr">input-demo</span>" placeholder="Insira o texto..."&gt;</pre></div>
+                        <div class="lab-render">
+                            <input type="text" class="input-demo" placeholder="Insira o texto...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Campo de e-mail com validação estrutural nativa</span><span class="tag-badge">&lt;input type="email"&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">input</span> type="<span class="val">email</span>" class="<span class="attr">input-demo</span>" placeholder="seu@email.com"&gt;</pre></div>
+                        <div class="lab-render">
+                            <input type="email" class="input-demo" placeholder="seu@email.com">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Caixa de entrada multi-linha para textos longos</span><span class="tag-badge">&lt;textarea&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">textarea</span> class="<span class="attr">input-demo</span>" style="<span class="attr">height</span>:<span class="val">40px</span>"&gt;&lt;/<span class="tag">textarea</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <textarea class="input-demo" style="height:45px; resize:none;" placeholder="Escreva observações ou relatórios longos de código..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Botão executável clicável</span><span class="tag-badge">&lt;button&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">button</span> class="<span class="attr">btn-demo</span>"&gt;Executar Commit&lt;/<span class="tag">button</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <button class="btn-demo" style="width:100%;">Executar Commit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Tabela para dados tabulares bidimensionais</span><span class="tag-badge">&lt;table&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">table</span> style="<span class="attr">width</span>:<span class="val">100%</span>; <span class="attr">background</span>:<span class="val">#111</span>"&gt;<br>  &lt;<span class="tag">tr</span>&gt;&lt;<span class="tag">td</span> style="<span class="attr">padding</span>:<span class="val">5px</span>"&gt;Célula Única&lt;/<span class="tag">td</span>&gt;&lt;/<span class="tag">tr</span>&gt;<br>&lt;/<span class="tag">table</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <table style="width:100%; background:#111; border:1px solid #222; font-size:12px; border-collapse:collapse;">
+                                <tr><td style="padding:6px; color:#fff; border:1px solid #222;">Dado Estruturado A</td><td style="padding:6px; color:var(--neon-cyan); border:1px solid #222;">Dado B</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Encapsulador de ilustração gráfica com legenda descritiva</span><span class="tag-badge">&lt;figure&gt; + &lt;figcaption&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">figure</span> style="<span class="attr">background</span>:<span class="val">#000</span>; <span class="attr">padding</span>:<span class="val">5px</span>"&gt;<br>  &lt;<span class="tag">div</span> style="<span class="attr">height</span>:<span class="val">30px</span>"&gt;&lt;/<span class="tag">div</span>&gt;<br>  &lt;<span class="tag">figcaption</span>&gt;Gráfico 1&lt;/<span class="tag">figcaption</span>&gt;<br>&lt;/<span class="tag">figure</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <figure style="background:#000; border:1px solid #222; padding:6px; text-align:center; width:100%;">
+                                <div style="height:30px; background:#16161f; font-size:11px; color:#444; display:flex; align-items:center; justify-content:center;">[Mídia Ilustrativa]</div>
+                                <figcaption style="font-size:11px; color:var(--text-sub); margin-top:4px;">Esquema descritivo do banco de dados.</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Controle ou injeção de fluxos de áudio som analógico</span><span class="tag-badge">&lt;audio&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">audio</span> controls style="<span class="attr">width</span>:<span class="val">100%</span>"&gt;<br>  &lt;<span class="tag">source</span> src="<span class="val">audio.mp3</span>" type="<span class="val">audio/mpeg</span>"&gt;<br>&lt;/<span class="tag">audio</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <div style="background:#111; padding:8px; border-radius:4px; display:flex; align-items:center; justify-content:between; font-size:12px; width:100%; border:1px solid #222;">
+                                <span style="color:#fff;">▶ Track Player Nativo</span>
+                                <span style="color:var(--neon-green); font-family:monospace; margin-left:auto;">[Controls]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lab-box">
+                    <div class="lab-titulo"><span>Widget interativo ocultável (Sanfona/Accordion)</span><span class="tag-badge">&lt;details&gt; + &lt;summary&gt;</span></div>
+                    <div class="lab-split">
+                        <div class="lab-codigo"><pre>&lt;<span class="tag">details</span> style="<span class="attr">background</span>:<span class="val">#111</span>; <span class="attr">padding</span>:<span class="val">6px</span>"&gt;<br>  &lt;<span class="tag">summary</span>&gt;Clique Aqui&lt;/<span class="tag">summary</span>&gt;<br>  &lt;<span class="tag">p</span>&gt;Dados secretos revelados.&lt;/<span class="tag">p</span>&gt;<br>&lt;/<span class="tag">details</span>&gt;</pre></div>
+                        <div class="lab-render">
+                            <details style="background:#111; padding:6px; border:1px solid #222; border-radius:4px; font-size:12px; width:100%;">
+                                <summary style="cursor:pointer; font-weight:bold; color:var(--neon-purple); outline:none;">Clique para Revelar Detalhes</summary>
+                                <p style="margin-top:6px; color:var(--text-sub);">O elemento foi expandido e revelou este texto oculto com sucesso!</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer style="margin-top: 40px; padding: 20px 0; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--text-sub);">
+            <p>Dicionário de Engenharia Front-End HTML5 • Versão 5.2 • 2026</p>
+        </footer>
+    </main>
+
+</body>
+</html>
