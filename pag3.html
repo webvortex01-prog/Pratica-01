@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guia do Dev • Central de Estudos</title>
     <link rel="stylesheet" href="style2.css">
 </head>
+
 <body>
 
     <header class="topo-guia">
@@ -15,74 +17,80 @@
 
     <div class="layout-dashboard">
 
-        <aside class="menu-lateral">
-            <h3>Tópicos do Guia</h3>
-            <nav class="links-guia">
-                <a href="#html-semantico">1. HTML5 Semântico</a>
-                <a href="#tags-essenciais">2. Tags Mais Usadas</a>
-                <a href="#css-displays">3. CSS: Displays (Flex & Grid)</a>
-                <a href="#css-layouts">4. CSS: Estruturas de Layout</a>
-            </nav>
-        </aside>
+        <div class="menu-guia">
+            <aside class="menu-lateral">
+                <h3>Tópicos do Guia</h3>
+                <nav class="links-guia">
+                    <a href="#html-semantico">1. HTML5 Semântico</a>
+                    <a href="#tags-essenciais">2. Tags Mais Usadas</a>
+                    <a href="#css-displays">3. CSS: Displays (Flex & Grid)</a>
+                    <a href="#css-layouts">4. CSS: Estruturas de Layout</a>
+                </nav>
+            </aside>
+        </div>
 
-        <main class="conteudo-guia">
+            <main class="conteudo-guia">
 
-            <section id="html-semantico" class="secao-estudo">
-                <h2>1. HTML5 Semântico (O Chassi do Site)</h2>
-                <p>Tags que dão significado ao navegador e ajudam no SEO do Google.</p>
-                
-                <div class="grid-tags">
-                    <article class="card-tag">
-                        <h4>&lt;header&gt;</h4>
-                        <p>O topo da página ou de uma seção. Guarda títulos, logos e menus.</p>
-                    </article>
-                    <article class="card-tag">
-                        <h4>&lt;main&gt;</h4>
-                        <p>O conteúdo principal e exclusivo da página. Só pode ter um por arquivo.</p>
-                    </article>
-                    <article class="card-tag">
-                        <h4>&lt;article&gt;</h4>
-                        <p>Conteúdo independente que faz sentido sozinho (ex: posts, cards de produto).</p>
-                    </article>
-                </div>
-            </section>
+                <section id="html-semantico" class="secao-estudo">
+                    <h2>1. HTML5 Semântico (O Chassi do Site)</h2>
+                    <p class="p-cards">Tags que dão significado ao navegador e ajudam no SEO do Google.</p>
 
-            <section id="tags-essenciais" class="secao-estudo">
-                <h2>2. Tags Convencionais mais Usadas</h2>
-                <p>Os tijolos que preenchem a estrutura semântica.</p>
-                
-                <div class="grid-tags">
-                    <article class="card-tag">
-                        <h4>&lt;h1&gt; a &lt;h6&gt;</h4>
-                        <p>Títulos e subtítulos. Importantes para a hierarquia do texto.</p>
-                    </article>
-                    <article class="card-tag">
-                        <h4>&lt;p&gt; e &lt;a&gt;</h4>
-                        <p>Parágrafos de texto e links de navegação com o atributo href.</p>
-                    </article>
-                    <article class="card-tag">
-                        <h4>&lt;img&gt;</h4>
-                        <p>Tag de imagem auto-fechável. Sempre usar o atributo 'alt' para acessibilidade.</p>
-                    </article>
-                </div>
-            </section>
+                    <div class="grid-tags">
+                        <article class="card-tag">
+                            <h4>&lt;header&gt;</h4>
+                            <p>O topo da página ou de uma seção. Guarda títulos, logos e menus.</p>
+                        </article>
+                        <article class="card-tag">
+                            <h4>&lt;main&gt;</h4>
+                            <p>O conteúdo principal e exclusivo da página. Só pode ter um por arquivo.</p>
+                        </article>
+                        <article class="card-tag">
+                            <h4>&lt;article&gt;</h4>
+                            <p>Conteúdo independente que faz sentido sozinho (ex: posts, cards de produto).</p>
+                        </article>
+                    </div>
+                </section>
 
-            <section id="css-displays" class="secao-estudo">
-                <h2>3. CSS: Controle de Displays (Como alinhar tudo)</h2>
-                <p>As propriedades que definem como as caixas se organizam na tela.</p>
-                
-                <div class="bloco-explicativo">
-                    <h4>Display: Flex;</h4>
-                    <p>Perfeito para alinhar elementos em uma única direção (linha ou coluna). É o que usamos para fazer menus ou alinhar textos do lado de imagens de forma simples.</p>
-                </div>
+                <section id="tags-essenciais" class="secao-estudo">
+                    <h2>2. Tags Convencionais mais Usadas</h2>
+                    <p class="p-cards">Os tijolos que preenchem a estrutura semântica.</p>
 
-                <div class="bloco-explicativo">
-                    <h4>Display: Grid;</h4>
-                    <p>O sistema definitivo para layouts bidimensionais (linhas E colunas ao mesmo tempo). É o que usamos para fazer galerias de fotos ou vitrines de produtos em formato de tabela/quadrados.</p>
-                </div>
-            </section>
+                    <div class="grid-tags">
+                        <article class="card-tag">
+                            <h4>&lt;h1&gt; a &lt;h6&gt;</h4>
+                            <p>Títulos e subtítulos. Importantes para a hierarquia do texto.</p>
+                        </article>
+                        <article class="card-tag">
+                            <h4>&lt;p&gt; e &lt;a&gt;</h4>
+                            <p>Parágrafos de texto e links de navegação com o atributo href.</p>
+                        </article>
+                        <article class="card-tag">
+                            <h4>&lt;img&gt;</h4>
+                            <p>Tag de imagem auto-fechável. Sempre usar o atributo 'alt' para acessibilidade.</p>
+                        </article>
+                    </div>
+                </section>
 
-        </main>
+                <section id="css-displays" class="grid-tags">
+                    <h2>3. CSS: Controle de Displays (Como alinhar tudo)</h2>
+                    <p class="p-cards">As propriedades que definem como as caixas se organizam na tela.</p>
+
+                    <div class="bloco-explicativo">
+                        <h4>Display: Flex;</h4>
+                        <p>Perfeito para alinhar elementos em uma única direção (linha ou coluna). É o que usamos para
+                            fazer menus ou alinhar textos do lado de imagens de forma simples.</p>
+                    </div>
+
+                    <div class="bloco-explicativo">
+                        <h4>Display: Grid;</h4>
+                        <p>O sistema definitivo para layouts bidimensionais (linhas E colunas ao mesmo tempo). É o que
+                            usamos para fazer galerias de fotos ou vitrines de produtos em formato de tabela/quadrados.
+                        </p>
+                    </div>
+                </section>
+
+            </main>
+        
     </div>
 
     <footer class="rodape-guia">
@@ -90,4 +98,5 @@
     </footer>
 
 </body>
+
 </html>

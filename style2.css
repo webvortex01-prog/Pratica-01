@@ -39,29 +39,151 @@ main {
     padding: 20px;
 }
 
-.menu-lateral {
+.layout-dashboard {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+.menu-guia {
+    position: fixed;        /* Trava na tela */
+    top: 0;                 /* Gruda totalmente no teto */
+    left: 0;                /* Gruda totalmente na esquerda */
+    width: 200px;           /* Uma largura de respeito para o menu */
+    height: 100vh;          /* Força a ocupar 100% da altura da janela (chão) */
+    background-color: #111319; /* O fundo escuro agora cobre TUDO de cima a baixo */
+    border-right: 2px solid #1e222b; /* Linha cirúrgica separando o menu do site */
+    z-index: 1000;
+}
+
+.links-guia {
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100vh;
-    background-color: #161b22; /* Cinza bem mais escuro para o menu lateral */
-    padding: 20px;
-    color: #8b949e; /* Letras em tom cinza claro para não cansar a vista */
+    gap: 70px;
+    margin-top: 20px;
 }
 
-.menu-lateral nav {
-   flex-direction: column;
-   gap: 10px;
+
+.links-guia a {
+    color: #9494a1;         /* Cor cinza padrão estilosa */
+    text-decoration: none;  /* Remove o sublinhado padrão de link */
+    font-size: 14px;
+    transition: 0.2s;
+    gap: 30px;
 }
 
-.menu-lateral a {
+.links-guia a:hover {
+    color: #00f0ff;         /* Seu azul neon ativo */
+    padding-left: 6px;      /* Dá um leve empurrãozinho para o lado */
+}
+
+.conteudo-guia {
+    margin-left: 290px; /* 250px do menu + 40px de espaço de respiro */
+    min-width: 0;                   /* Evita bugs de textos longos quebrarem o flex */
+}
+
+/* ============================================== */
+/* ESTILIZAÇÃO VISUAL: DEIXANDO O SITE PREMIUM    */
+/* ============================================== */
+
+/* Ajuste no fundo da página inteira */
+body {
+    background-color: #0f1015; /* Fundo grafite escuro bem moderno */
+    color: #e2e8f0;            /* Texto claro para não cansar a vista */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;          /* Melhora o espaçamento das linhas do texto */
+}
+
+/* O Bloco do Menu Lateral */
+.menu-lateral {
+    height: 100%;
+    padding: 40px 24px;     /* Espaçamento interno profissional */
+    display: flex;
     flex-direction: column;
-    gap: 10px;
-    text-decoration: none;
-    color: #8b949e; /* Letras em tom cinza claro para não cansar a vista */
-    transition: color 0.3s ease;
+    gap: 30px;
 }
 
+/* Título "Tópicos do Guia" */
+.menu-lateral h3 {
+color: #00f0ff;         /* Seu azul neon ativo */
+    font-size: 14px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1e222b;
+}
+
+
+.links-guia {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* Estilizando os links para brilharem */
+.links-guia a {
+    text-decoration: none;
+    color: #94a3b8;         /* Cinza padrão premium */
+    font-size: 15px;
+    font-family: sans-serif;
+    transition: all 0.2s ease;
+}
+
+/* Efeito ao passar o mouse */
+.links-guia a:hover {
+    color: #00f0ff !important; /* Azul neon que você curte */
+    padding-left: 8px;         /* O link dá um leve "pulo" pro lado */
+}
+
+/* Estilizando o Bloco de Conteúdo (Títulos e Códigos) */
+.conteudo-guia h2 {
+    color: #00f0ff;            /* Títulos principais em neon */
+    font-size: 24px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+/* Estilização para as tags que aparecem no seu texto (como <header>, <main>) */
+.conteudo-guia code, 
+.conteudo-guia p:contains("<") { 
+    background-color: #1e222b;
+    color: #ff79c6;            /* Código em rosa estilo Drácula/Neon */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#html-semantico h2 {
+    margin:auto;
+    background-color: #057aff;
+    width: 500px;
+    padding: 10px;
+    border-radius: 8px;
+    color: #f0f6fc;
+    font-size: 24px;
+}
+
+.p-cards {
+    margin:auto;
+    background-color: #1e222b;
+    width: 500px;
+    padding: 10px;
+    border-radius: 8px;
+    color: #8b949e;
+    font-size: 16px;
+}
+
+.grid-tags {
+    background-color: #1e222b;
+    color: #ffffff;
+    font-size: 1.5em;
+    line-height: 1.5;
+    padding: 1em;
+    border-radius: 10px;
+    
+}
+
+.grid-tags p {
+    margin: 20px; 
+}
